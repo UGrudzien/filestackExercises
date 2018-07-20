@@ -13,10 +13,10 @@ window.addEventListener('DOMContentLoaded', function () {
         onClose: function () {
 
         },
-        onUploadDone: (res) => console.log(res),
+        onUploadDone: creatingHtmlList,
     };
     const picker = client.picker(options);
-    document.getElementById("content").innerHTML = picker;
+    // document.getElementById("content").innerHTML = picker;
 
     const openBtn = document.getElementById('open');
     const closeBtn = document.getElementById('close');
@@ -24,14 +24,18 @@ window.addEventListener('DOMContentLoaded', function () {
     closeBtn.addEventListener('click', () => picker.close());
 });
 
-function creatingHtmlList(textElement){
-    var ul = document.getElementById("filelist");
-    var li= document.createElement("li");
-    ul.appendChild(li);
-    var t=document.createTextNode(textElement);
-    li.innerHTML=li.innerHTML + textElement;
+function creatingHtmlList(response) {
+     var pickerFileMetadata = response.filesUploaded;
+    for (var i = 0; i < pickerFileMetadata.length; i++) {
+        var filename = pickerFileMetadata[i].filename;
+        var ul = document.getElementById("filelist");
+        var li = document.createElement("li");
+        ul.appendChild(li);
+        var t = document.createTextNode(filename);
+        li.innerHTML = li.innerHTML + filename;
+    }
 }
-creatingHtmlList("ja");
+
 
 // document.querySelector('input').addEventListener('change', (event) => {
 //     const files = event.target.files;
