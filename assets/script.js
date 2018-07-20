@@ -4,12 +4,12 @@
 const client = filestack.init('ADY3Owf7wRiWAXEIJ7cCrz');
 
     window.addEventListener('DOMContentLoaded', function () {
-    const apikey = 'YOUR_APIKEY';
+    const apikey = 'ADY3Owf7wRiWAXEIJ7cCrz';
     const client = filestack.init(apikey);
     const options = {
         displayMode: 'inline',
         container: '#inline',
-        maxFiles: 20,
+        maxFiles: 5,
         uploadInBackground: false,
         onUploadDone: (res) => console.log(res),
     };
