@@ -15,9 +15,10 @@ window.addEventListener('DOMContentLoaded', function () {
 
         },
         onUploadDone: creatingHTMLList,
+
     };
     const picker = client.picker(options);
- 
+
 
     const openBtn = document.getElementById('open');
     const closeBtn = document.getElementById('close');
@@ -35,21 +36,39 @@ window.addEventListener('DOMContentLoaded', function () {
 // helper function for creating an unorderer HTML list using javascript I took from https://stackoverflow.com/questions/11351135/create-ul-and-li-elements-in-javascript
 
 function creatingHTMLList(response) {
-     var pickerFileMetadata = response.filesUploaded; //table of pickerFileMetadata object
+    var pickerFileMetadata = response.filesUploaded; //table of pickerFileMetadata object
+
     for (var i = 0; i < pickerFileMetadata.length; i++) {
         var filename = pickerFileMetadata[i].filename; //taking a filename properties from pickerfilemetadata object
         var fileUrl = pickerFileMetadata[i].url;
+        var clientTransform = client.transform(fileUrl, {
+            resize: {
+                height: 50,
+            },
+        })
         var ul = document.getElementById("filelist");
         var li = document.createElement("li");
         ul.appendChild(li);
-        var a=document.createElement("a");
-        a.setAttribute("href",fileUrl);
+        var a = document.createElement("a");
+        a.setAttribute("href", fileUrl);
         a.setAttribute("target", "_blank");
         li.appendChild(a);
-        // var t = document.createTextNode(filename);
-        a.innerHTML = a.innerHTML + filename;
-    }
+        const img = document.createElement('img');
+        img.src= clientTransform;
+        a.appendChild(img);
+    //     client.retrieve('9v04TW7ZQLi9V2V3InV0').then((blob) => {
+    //         const urlCreator = window.URL || window.webkitURL;
+    //         const img = document.createElement('img');
+    //         img.width = 720;
+    //         img.height = 480;
+    //         img.src = urlCreator.createObjectURL(blob);
+
+    //         document.getElementById('content').appendChild(img)
+    //     }).catch((error) => {
+    //         console.error(error);
+    //     });
+    // });
+// var t = document.createTextNode(filename);
+a.innerHTML = a.innerHTML + filename;
 }
-
-
-
+}
