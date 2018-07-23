@@ -19,7 +19,6 @@ window.addEventListener('DOMContentLoaded', function () {
     };
     const picker = client.picker(options);
 
-
     const openBtn = document.getElementById('open');
     const closeBtn = document.getElementById('close');
     openBtn.addEventListener('click', () => picker.open());
@@ -34,9 +33,18 @@ function onUpload(response) {
     for (var i = 0; i < pickerFileMetadata.length; i++) {
         var filename = pickerFileMetadata[i].filename; //taking a filename properties from pickerfilemetadata object
         var fileUrl = pickerFileMetadata[i].url;
+        if (pickerFileMetadata[i].mimetype =="application/pdf"){
+            var pdfToImage = client.transform(fileUrl, {
+                output:{
+                    format:"jpg",
+                    page:1,
+                },
+            })
+            var fileUrl =pdfToImage;
+        }
         var imageTransform = imageUrlThunbnailTransformation(fileUrl); //url for thumnail image
         creatingHTMLList(fileUrl, filename, imageTransform);
-        document.getElementsByTagName("span").innerText = filename;
+        // document.getElementsByTagName("span").innerText = filename;
         imageThumbnail(ImageTransform);
     }
 }
@@ -51,7 +59,7 @@ function imageUrlThunbnailTransformation(fileUrl) { //changing original image in
     return ImageTransform;
 }
 function documentUrlThumbnailTransformation(){
-    
+
 }
 
 function creatingHTMLList(fileUrl, filename, imageTransform) {
