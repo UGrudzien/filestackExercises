@@ -33,18 +33,23 @@ function onUpload(response) {
     for (var i = 0; i < pickerFileMetadata.length; i++) {
         var filename = pickerFileMetadata[i].filename; //taking a filename properties from pickerfilemetadata object
         var fileUrl = pickerFileMetadata[i].url;
-        var mimetypeTyp = pickerFileMetadata[i].mimetype.split("/",1);
-        if (mimetypeTyp =="application"){
+        var mimetypeTyp = pickerFileMetadata[i].mimetype.split("/", 1);
+        if (mimetypeTyp == "application") {
             var pdfToImage = client.transform(fileUrl, {
-                output:{
-                    format:"jpg",
-                    page:1,
+                output: {
+                    format: "jpg",
+                    page: 1,
                 },
             })
-             var preview = client.preview(fileUrl);
-              var imageTransform = imageUrlThunbnailTransformation(pdfToImage);
-            fileUrl=pdfToImage;
-           //   creatingHTMLList(preview, filename, imageTransform);
+            var handle= pickerFileMetadata[i].handle;
+            var preview = client.preview(handle, {id:"preview"});
+            // document.getElementsByTagName("a").
+            // myWindow = window.open("data:text/html," + preview,
+            //            "_blank");
+            // myWindow.focus();
+            var imageTransform = imageUrlThunbnailTransformation(pdfToImage);
+            fileUrl = pdfToImage;
+            //   creatingHTMLList(preview, filename, imageTransform);
         }
         var imageTransform = imageUrlThunbnailTransformation(fileUrl); //url for thumnail image
         creatingHTMLList(fileUrl, filename, imageTransform);
@@ -62,7 +67,8 @@ function imageUrlThunbnailTransformation(fileUrl) { //changing original image in
     })
     return ImageTransform;
 }
-function documentUrlThumbnailTransformation(){
+
+function documentUrlThumbnailTransformation() {
 
 }
 // function preview(preview){
@@ -81,11 +87,11 @@ function creatingHTMLList(fileUrl, filename, imageTransform) {
 
     var div = document.createElement("div");
     a.appendChild(div);
-        const img = document.createElement('img');
+    const img = document.createElement('img');
     img.src = imageTransform;
     // var div = document.createElement("div");
     div.appendChild(img);
- 
+
     var span = document.createElement('span');
     a.appendChild(span);
     span.innerText = filename;
