@@ -6,3 +6,31 @@
     border-width: 1px;
 
 }
+ul{
+    list-style: none;
+    
+}
+a{
+    display: inline-block;
+    border-style: solid;
+    border-color:lightgray;
+    margin-top: 5px;
+
+}
+a span{
+    display: inline-block;
+    color: black;
+    width:25em;
+}
+a div{
+    display: inline-block;
+    width: 52px;
+    height: 52px;
+    float: left;
+
+}
+a div img{
+    display: flex;
+    text-align: center;
+    margin: auto;
+}

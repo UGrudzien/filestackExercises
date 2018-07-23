@@ -44,6 +44,7 @@ function creatingHTMLList(response) {
         var clientTransform = client.transform(fileUrl, {
             resize: {
                 height: 50,
+              width: 50,
             },
         })
         var ul = document.getElementById("filelist");
@@ -55,7 +56,15 @@ function creatingHTMLList(response) {
         li.appendChild(a);
         const img = document.createElement('img');
         img.src= clientTransform;
-        a.appendChild(img);
+      
+        var div = document.createElement("div");
+       
+        a.appendChild(div);
+          div.appendChild(img);
+          var span =  document.createElement('span');
+           a.appendChild(span);
+           span.innerText=filename;
+           
     //     client.retrieve('9v04TW7ZQLi9V2V3InV0').then((blob) => {
     //         const urlCreator = window.URL || window.webkitURL;
     //         const img = document.createElement('img');
@@ -69,6 +78,7 @@ function creatingHTMLList(response) {
     //     });
     // });
 // var t = document.createTextNode(filename);
-a.innerHTML = a.innerHTML + filename;
+//span.innerHTML = span.innerHTML+filename;
+a.innerHTML = a.innerHTML ;
 }
 }
