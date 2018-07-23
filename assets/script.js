@@ -33,19 +33,23 @@ function onUpload(response) {
     for (var i = 0; i < pickerFileMetadata.length; i++) {
         var filename = pickerFileMetadata[i].filename; //taking a filename properties from pickerfilemetadata object
         var fileUrl = pickerFileMetadata[i].url;
-        if (pickerFileMetadata[i].mimetype =="application/pdf"){
+        var mimetypeTyp = pickerFileMetadata[i].mimetype.split("/",1);
+        if (mimetypeTyp =="application"){
             var pdfToImage = client.transform(fileUrl, {
                 output:{
                     format:"jpg",
                     page:1,
                 },
             })
-            var fileUrl =pdfToImage;
+             var preview = client.preview(fileUrl);
+              var imageTransform = imageUrlThunbnailTransformation(pdfToImage);
+            fileUrl=pdfToImage;
+           //   creatingHTMLList(preview, filename, imageTransform);
         }
         var imageTransform = imageUrlThunbnailTransformation(fileUrl); //url for thumnail image
         creatingHTMLList(fileUrl, filename, imageTransform);
         // document.getElementsByTagName("span").innerText = filename;
-        imageThumbnail(ImageTransform);
+        // imageThumbnail(ImageTransform);
     }
 }
 
@@ -61,6 +65,9 @@ function imageUrlThunbnailTransformation(fileUrl) { //changing original image in
 function documentUrlThumbnailTransformation(){
 
 }
+// function preview(preview){
+//     document.getElementsByTagName("a").onClick 
+// }
 
 function creatingHTMLList(fileUrl, filename, imageTransform) {
     var ul = document.getElementById("filelist");
