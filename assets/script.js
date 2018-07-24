@@ -31,33 +31,11 @@ function onUpload(response) {
     var pickerFileMetadataArray = response.filesUploaded; //array of pickerFileMetadata
 
     for (var i = 0; i < pickerFileMetadataArray.length; i++) {
-        // var filename = pickerFileMetadataArray[i].filename; //taking a filename properties from pickerfilemetadata object
+        
         var pickerFileMetadata = pickerFileMetadataArray[i];
         var fileUrl = pickerFileMetadataArray[i].url;
-        // var mimetypeTyp = pickerFileMetadataArray[i].mimetype.split("/", 1);
-        // if (mimetypeTyp == "application") {
-        //     // var documentToImage = documentToImage(fileUrl);
-        //     var handle = pickerFileMetadataArray[i].handle;
-        //     var preview = function () {
-        //         client.preview(handle)
-        //     };
-        //     var links = document.getElementsByTagName("a");
-
-        //     for (var i = 0; i < links.length; i++) {
-
-        //         var link = links[i].addEventListener("click", preview);
-        //     };
-        // //     // myWindow = window.open("data:text/html," + preview,
-        //     //            "_blank");
-        //     // myWindow.focus();
-        //     var imageTransform = imageUrlThunbnailTransformation(documentToImage);
-        //     fileUrl = documentToImage;
-        //     //   creatingHTMLList(preview, filename, imageTransform);
-        // }
-        // var imageTransform = imageUrlThunbnailTransformation(fileUrl); //url for thumnail image
         creatingHTMLList(fileUrl, pickerFileMetadata);
-        // document.getElementsByTagName("span").innerText = filename;
-        // imageThumbnail(ImageTransform);
+      
     }
 }
 
