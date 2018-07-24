@@ -31,83 +31,99 @@ function onUpload(response) {
     var pickerFileMetadataArray = response.filesUploaded; //array of pickerFileMetadata
 
     for (var i = 0; i < pickerFileMetadataArray.length; i++) {
-        var filename = pickerFileMetadataArray[i].filename; //taking a filename properties from pickerfilemetadata object
+        // var filename = pickerFileMetadataArray[i].filename; //taking a filename properties from pickerfilemetadata object
+        var pickerFileMetadata = pickerFileMetadataArray[i];
         var fileUrl = pickerFileMetadataArray[i].url;
-        var mimetypeTyp = pickerFileMetadataArray[i].mimetype.split("/", 1);
-        if (mimetypeTyp == "application") {
-            var documentToImage=documentToImage(fileUrl);
-            var handle = pickerFileMetadata[i].handle;
-            var preview = function () {
-                client.preview(handle)
-            };
-            var links = document.getElementsByTagName("a");
+        // var mimetypeTyp = pickerFileMetadataArray[i].mimetype.split("/", 1);
+        // if (mimetypeTyp == "application") {
+        //     // var documentToImage = documentToImage(fileUrl);
+        //     var handle = pickerFileMetadataArray[i].handle;
+        //     var preview = function () {
+        //         client.preview(handle)
+        //     };
+        //     var links = document.getElementsByTagName("a");
 
-            for (var i = 0; i < links.length; i++) {
+        //     for (var i = 0; i < links.length; i++) {
 
-                var link = links[i].addEventListener("click", preview);
-            };
-            // myWindow = window.open("data:text/html," + preview,
-            //            "_blank");
-            // myWindow.focus();
-            var imageTransform = imageUrlThunbnailTransformation(documentToImage);
-            fileUrl = documentToImage;
-            //   creatingHTMLList(preview, filename, imageTransform);
-        }
-        var imageTransform = imageUrlThunbnailTransformation(fileUrl); //url for thumnail image
-        creatingHTMLList(fileUrl, filename, imageTransform);
+        //         var link = links[i].addEventListener("click", preview);
+        //     };
+        // //     // myWindow = window.open("data:text/html," + preview,
+        //     //            "_blank");
+        //     // myWindow.focus();
+        //     var imageTransform = imageUrlThunbnailTransformation(documentToImage);
+        //     fileUrl = documentToImage;
+        //     //   creatingHTMLList(preview, filename, imageTransform);
+        // }
+        // var imageTransform = imageUrlThunbnailTransformation(fileUrl); //url for thumnail image
+        creatingHTMLList(fileUrl, pickerFileMetadata);
         // document.getElementsByTagName("span").innerText = filename;
         // imageThumbnail(ImageTransform);
     }
 }
 
 function documentToImage(fileUrl) {
+
     var documentToImage = client.transform(fileUrl, {
         output: {
             format: "jpg",
             page: 1,
         },
-    })
+    });
+
     return documentToImage;
 }
 
 function imageUrlThunbnailTransformation(fileUrl) { //changing original image into the thumnail image
-    var ImageTransform = client.transform(fileUrl, {
+    var imageTransform = client.transform(fileUrl, {
         resize: {
             height: 50,
             width: 50,
         },
     })
-    return ImageTransform;
+    return imageTransform;
 }
 
-function documentUrlThumbnailTransformation() {
 
-}
-// function preview(preview){
-//     document.getElementsByTagName("a").onClick 
-// }
 
-function creatingHTMLList(fileUrl, filename, imageTransform) {
+function creatingHTMLList(fileUrl, pickerFileMetadata) {
     var ul = document.getElementById("filelist");
     var li = document.createElement("li");
     ul.appendChild(li);
 
     var a = document.createElement("a");
-    a.setAttribute("className", "link");
-    a.setAttribute("href", "#");
-    //a.setAttribute("target", "_blank");
     li.appendChild(a);
-
     var div = document.createElement("div");
     a.appendChild(div);
-    const img = document.createElement('img');
-    img.src = imageTransform;
-    // var div = document.createElement("div");
-    div.appendChild(img);
+    var mimetype = pickerFileMetadata.mimetype.split("/", 1);
+    if (mimetype == "application") {
+        a.setAttribute("href", "#");
+        var currentDocumentToImage = documentToImage(fileUrl);
+        //creating a thumnail for document
+        const img = document.createElement('img');
+        img.src = imageUrlThunbnailTransformation(currentDocumentToImage);
+        div.appendChild(img);
+
+        var handle = pickerFileMetadata.handle; //creating a Preview for document
+        var preview = function () {
+            client.preview(handle);
+        };
+        var link = a.addEventListener("click", preview);
+
+
+    } else if (mimetype == "image") {
+        a.setAttribute("href", fileUrl); //creating a new window with image
+        a.setAttribute("target", "_blank");
+        const img = document.createElement('img');
+        img.src = imageUrlThunbnailTransformation(fileUrl); //creating a thumnail for image
+        div.appendChild(img);
+    } else {
+
+    }
+
 
     var span = document.createElement('span');
     a.appendChild(span);
-    span.innerText = filename;
+    span.innerText = pickerFileMetadata.filename;
 
     a.innerHTML = a.innerHTML;
 }
