@@ -28,7 +28,6 @@ window.addEventListener('DOMContentLoaded', function () {
 
 function onUpload(response) {
     var pickerFileMetadataArray = response.filesUploaded; //array of pickerFileMetadata
-
     for (var i = 0; i < pickerFileMetadataArray.length; i++) {
 
         var pickerFileMetadata = pickerFileMetadataArray[i];
@@ -39,14 +38,12 @@ function onUpload(response) {
 }
 
 function documentToImage(fileUrl) {
-
     var documentToImage = client.transform(fileUrl, {
         output: {
             format: "jpg",
             page: 1,
         },
     });
-
     return documentToImage;
 }
 
@@ -70,7 +67,7 @@ function creatingHTMLList(fileUrl, pickerFileMetadata) {
     var div = document.createElement("div");
     a.appendChild(div);
     var mimetype = pickerFileMetadata.mimetype.split("/", 1);
-    if (mimetype == "application") {
+    if (pickerFileMetadata.mimetype == "application/msword") {
         a.setAttribute("href", "#");
         var currentDocumentToImage = documentToImage(fileUrl);
         //creating a thumnail for document
@@ -103,6 +100,3 @@ function creatingHTMLList(fileUrl, pickerFileMetadata) {
     a.innerHTML = a.innerHTML;
 }
 
-function imageThumbnail(imageTransform) { //creating a img HTML element
-
-}
