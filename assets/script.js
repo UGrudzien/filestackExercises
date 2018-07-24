@@ -28,27 +28,29 @@ window.addEventListener('DOMContentLoaded', function () {
 // helper function for creating an unorderer HTML list using javascript I took from https://stackoverflow.com/questions/11351135/create-ul-and-li-elements-in-javascript
 
 function onUpload(response) {
-    var pickerFileMetadata = response.filesUploaded; //table of pickerFileMetadata array
+    var pickerFileMetadataArray = response.filesUploaded; //array of pickerFileMetadata
 
-    for (var i = 0; i < pickerFileMetadata.length; i++) {
-        var filename = pickerFileMetadata[i].filename; //taking a filename properties from pickerfilemetadata object
-        var fileUrl = pickerFileMetadata[i].url;
-        var mimetypeTyp = pickerFileMetadata[i].mimetype.split("/", 1);
+    for (var i = 0; i < pickerFileMetadataArray.length; i++) {
+        var filename = pickerFileMetadataArray[i].filename; //taking a filename properties from pickerfilemetadata object
+        var fileUrl = pickerFileMetadataArray[i].url;
+        var mimetypeTyp = pickerFileMetadataArray[i].mimetype.split("/", 1);
         if (mimetypeTyp == "application") {
-            var pdfToImage = client.transform(fileUrl, {
-                output: {
-                    format: "jpg",
-                    page: 1,
-                },
-            })
-            var handle= pickerFileMetadata[i].handle;
-            var preview = client.preview(handle, {id:"preview"});
-            // document.getElementsByTagName("a").
+            var documentToImage=documentToImage(fileUrl);
+            var handle = pickerFileMetadata[i].handle;
+            var preview = function () {
+                client.preview(handle)
+            };
+            var links = document.getElementsByTagName("a");
+
+            for (var i = 0; i < links.length; i++) {
+
+                var link = links[i].addEventListener("click", preview);
+            };
             // myWindow = window.open("data:text/html," + preview,
             //            "_blank");
             // myWindow.focus();
-            var imageTransform = imageUrlThunbnailTransformation(pdfToImage);
-            fileUrl = pdfToImage;
+            var imageTransform = imageUrlThunbnailTransformation(documentToImage);
+            fileUrl = documentToImage;
             //   creatingHTMLList(preview, filename, imageTransform);
         }
         var imageTransform = imageUrlThunbnailTransformation(fileUrl); //url for thumnail image
@@ -56,6 +58,16 @@ function onUpload(response) {
         // document.getElementsByTagName("span").innerText = filename;
         // imageThumbnail(ImageTransform);
     }
+}
+
+function documentToImage(fileUrl) {
+    var documentToImage = client.transform(fileUrl, {
+        output: {
+            format: "jpg",
+            page: 1,
+        },
+    })
+    return documentToImage;
 }
 
 function imageUrlThunbnailTransformation(fileUrl) { //changing original image into the thumnail image
@@ -81,8 +93,9 @@ function creatingHTMLList(fileUrl, filename, imageTransform) {
     ul.appendChild(li);
 
     var a = document.createElement("a");
-    a.setAttribute("href", fileUrl);
-    a.setAttribute("target", "_blank");
+    a.setAttribute("className", "link");
+    a.setAttribute("href", "#");
+    //a.setAttribute("target", "_blank");
     li.appendChild(a);
 
     var div = document.createElement("div");
