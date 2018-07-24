@@ -26,18 +26,17 @@ window.addEventListener('DOMContentLoaded', function () {
 });
 
 
-function onUpload(response) {
+function onUpload(response) {//function called after file uploud
     var pickerFileMetadataArray = response.filesUploaded; //array of pickerFileMetadata
     for (var i = 0; i < pickerFileMetadataArray.length; i++) {
 
         var pickerFileMetadata = pickerFileMetadataArray[i];
         var fileUrl = pickerFileMetadataArray[i].url;
-        creatingHTMLList(fileUrl, pickerFileMetadata);
-      
+        creatingHTMLList(fileUrl, pickerFileMetadata);      
     }
 }
 
-function documentToImage(fileUrl) {
+function documentToImage(fileUrl) {// transfore the first page of docuemnt to an image
     var documentToImage = client.transform(fileUrl, {
         output: {
             format: "jpg",
@@ -67,7 +66,7 @@ function creatingHTMLList(fileUrl, pickerFileMetadata) {
     var div = document.createElement("div");
     a.appendChild(div);
     var mimetype = pickerFileMetadata.mimetype.split("/", 1);
-    if (pickerFileMetadata.mimetype == "application/msword") {
+    if (pickerFileMetadata.mimetype == "application/msword") {//if statement for document
         a.setAttribute("href", "#");
         var currentDocumentToImage = documentToImage(fileUrl);
         //creating a thumnail for document
@@ -82,13 +81,15 @@ function creatingHTMLList(fileUrl, pickerFileMetadata) {
         var link = a.addEventListener("click", preview);
 
 
-    } else if (mimetype == "image") {
+    } else if (mimetype == "image") {//if statement for image
         a.setAttribute("href", fileUrl); //creating a new window with image
         a.setAttribute("target", "_blank");
         const img = document.createElement('img');
         img.src = imageUrlThunbnailTransformation(fileUrl); //creating a thumnail for image
         div.appendChild(img);
-    } else {
+
+
+    } else { //if statement for file neither image nor .doc
         a.setAttribute("href",fileUrl);
         a.setAttribute("downloud", "");
         
