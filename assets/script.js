@@ -25,13 +25,12 @@ window.addEventListener('DOMContentLoaded', function () {
     closeBtn.addEventListener('click', () => picker.close());
 });
 
-// helper function for creating an unorderer HTML list using javascript I took from https://stackoverflow.com/questions/11351135/create-ul-and-li-elements-in-javascript
 
 function onUpload(response) {
     var pickerFileMetadataArray = response.filesUploaded; //array of pickerFileMetadata
 
     for (var i = 0; i < pickerFileMetadataArray.length; i++) {
-        
+
         var pickerFileMetadata = pickerFileMetadataArray[i];
         var fileUrl = pickerFileMetadataArray[i].url;
         creatingHTMLList(fileUrl, pickerFileMetadata);
@@ -60,8 +59,6 @@ function imageUrlThunbnailTransformation(fileUrl) { //changing original image in
     })
     return imageTransform;
 }
-
-
 
 function creatingHTMLList(fileUrl, pickerFileMetadata) {
     var ul = document.getElementById("filelist");
