@@ -7,13 +7,10 @@ window.addEventListener('DOMContentLoaded', function () {
     var files = [];
     const options = {
         displayMode: 'inline',
-        container: '#inline',
+        container: '#picker',
         maxFiles: 5,
         uploadInBackground: false,
         disableThumbnails: false,
-        onClose: function () {
-
-        },
         onUploadDone: onUpload,
 
     };
@@ -69,7 +66,7 @@ function creatingHTMLList(fileUrl, pickerFileMetadata) {
     if (pickerFileMetadata.mimetype == "application/msword") {//if statement for document
         a.setAttribute("href", "#");
         var currentDocumentToImage = documentToImage(fileUrl);
-        //creating a thumnail for document
+        //creating a thumbnail for document
         const img = document.createElement('img');
         img.src = imageUrlThunbnailTransformation(currentDocumentToImage);
         div.appendChild(img);

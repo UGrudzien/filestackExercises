@@ -8,15 +8,23 @@
 }
 ul{
     list-style: none;
+    display: inline-block;
+    margin:auto;
+ 
     
 }
 a{
     display: inline-block;
     border-style: solid;
     border-color:lightgray;
-    margin-top: 5px;
+    border-width:1px;
+    border-radius: 5%;
+    margin-top: 5px;}
+    a::hover{
+        border-width: 5px;
+    }
 
-}
+
 a span{
     display: inline-block;
     color: black;
@@ -32,5 +40,8 @@ a div{
 a div img{
     display: flex;
     text-align: center;
+    margin: auto;
+}
+#picker{
     margin: auto;
 }
