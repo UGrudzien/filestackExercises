@@ -89,7 +89,9 @@ function creatingHTMLList(fileUrl, pickerFileMetadata) {
         img.src = imageUrlThunbnailTransformation(fileUrl); //creating a thumnail for image
         div.appendChild(img);
     } else {
-
+        a.setAttribute("href",fileUrl);
+        a.setAttribute("downloud", "");
+        
     }
 
 
