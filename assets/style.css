@@ -6,12 +6,22 @@
     border-width: 1px;
 
 }
+.buttonStyle{
+    display: flex
+}
+button{
+    margin: auto;
+}
 ul{
     list-style: none;
     display: inline-block;
     margin:auto;
  
     
+}
+li{
+    margin: 1em;
+    display: inline;
 }
 a{
     display: inline-block;
@@ -20,27 +30,28 @@ a{
     border-width:1px;
     border-radius: 5%;
     margin-top: 5px;}
-    a::hover{
-        border-width: 5px;
+    a:hover{
+        transform: scale(1.02);
     }
 
 
 a span{
     display: inline-block;
     color: black;
-    width:25em;
+    width:20em;
 }
 a div{
-    display: inline-block;
+    display: flex;
     width: 52px;
     height: 52px;
     float: left;
 
 }
 a div img{
-    display: flex;
+    display: inline-block;
     text-align: center;
     margin: auto;
+    
 }
 #picker{
     margin: auto;
