@@ -1,8 +1,4 @@
 const sqlite3 = require('sqlite3').verbose();
-var http = require('http');
-var fs = require('fs');
-var path = require('path');
-
 	
 let db = new sqlite3.Database('data.db', (err) => {
   if (err) {
@@ -12,3 +8,4 @@ let db = new sqlite3.Database('data.db', (err) => {
 });
 
 
+db.close();
