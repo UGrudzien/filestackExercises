@@ -3,15 +3,20 @@ const Promise = require('bluebird');
 
 
 class myDbApp {
-  constructor(dbFilePath){
-let db = new sqlite3.Database('data.db', sqlite3.OPEN_CREATE, (err) => {
-  if (err) {
-    return console.error(err.message);
+   constructor(dbFilePath) {
+    this.db = new sqlite3.Database(dbFilePath, (err) => {
+      if (err) {
+        console.log('Could not connect to database', err)
+      } else {
+        console.log('Connected to database')
+      }
+    })
   }
-  console.log('Connected to the in-memory SQlite database.');
-})
+}
 
-  }
+var myDb = new myDbApp("data.db");
+
+
 function run(sql, params = []) {
     return new Promise((resolve, reject) => {
         this.db.run(sql, params, function (err) {
@@ -28,7 +33,7 @@ function run(sql, params = []) {
     })
 }
 
-function createTable() {
+myDb.createTable() => {
     const sql = `
     CREATE TABLE IF NOT EXISTS db (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -43,7 +48,7 @@ function create(name, fileurl) {
 }
 
 
-db.close();
-}
+//db.close();
 
-module.exports = myDbApp; 
+
+//module.exports = myDbApp; 
