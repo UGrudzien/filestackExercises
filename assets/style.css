@@ -1,10 +1,13 @@
+.banner{
+}
+
 .mainTitle{
     text-align: center;
     margin-top:2em;
-    border-style: solid;
-    border-color: lightslategrey;
-    border-width: 1px;
-  
+    border-bottom-style: solid;
+    border-bottom-color: lightslategrey;
+    border-bottom-width: 1px;
+font-family: 'Indie Flower', cursive;  
 
 }
 .buttonStyle{

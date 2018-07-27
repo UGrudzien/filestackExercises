@@ -12,8 +12,15 @@ let db = new sqlite3.Database('data.db', (err) => {
     }
     console.log('Connected to the in-memory SQlite database.');
 });
- 
+db.run('CREATE TABLE langs(name text)');
 
+db.run(`INSERT INTO langs(name) VALUES(?)`, ['C'], function (err) {
+    if (err) {
+        return console.log(err.message);
+    }
+    // get the last insert id
+    console.log(`A row has been inserted with rowid ${this.lastID}`);
+});
 
 
 http.createServer(function (request, response) {
@@ -43,34 +50,8 @@ http.createServer(function (request, response) {
 
 
 
-
 }).listen(8080);
 console.log('Server running at http://127.0.0.1:8080/');
 // var mysql = require('mysql');
-function run(sql, params = []) {
-    return new Promise((resolve, reject) => {
-      this.db.run(sql, params, function (err) {
-        if (err) {
-          console.log('Error running sql ' + sql)
-          console.log(err)
-          reject(err)
-        } else {
-          resolve({ id: this.lastID })
-        }
-      })
-    })
-  }
-function createTable() {
-    const sql = `
-    CREATE TABLE IF NOT EXISTS db (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      name TEXT
-      urt TEXT)`
-    return db.run(sql)
-  }
-  function  create(name) {
-    return dbo.run(
-      'INSERT INTO db (name) VALUES (?)',
-      [name])
-  }
+
 //db.close();
