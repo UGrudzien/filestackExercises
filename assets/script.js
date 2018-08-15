@@ -14,6 +14,8 @@ window.addEventListener('DOMContentLoaded', function () {
         onUploadDone: onUpload,
         storeTo:{
             container:"cde",
+            location:"azure",
+            region: "West Europe"
         }
 
     };
