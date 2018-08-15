@@ -1,7 +1,7 @@
 //  import * as filestack from '/node_modules/filestack-js';
 // const client = filestack.init('apikey');
 
-const client = filestack.init('ADY3Owf7wRiWAXEIJ7cCrz');
+const client = filestack.init('AEP4wtbDSsOlk6YJhoVEAz');
 
 window.addEventListener('DOMContentLoaded', function () {
     var files = [];
@@ -12,6 +12,9 @@ window.addEventListener('DOMContentLoaded', function () {
         uploadInBackground: false,
         disableThumbnails: false,
         onUploadDone: onUpload,
+        storeTo:{
+            container:"cde",
+        }
 
     };
     const picker = client.picker(options);
