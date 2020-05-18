@@ -1,0 +1,42 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>transforms demo</title>
+
+    <script src="https://static.filestackapi.com/filestack-js/3.x.x/filestack.min.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://static.filestackapi.com/transforms-ui/beta/transforms.css" />
+</head>
+
+<body>
+    <div id='link'>
+
+    </div>
+    <div id="preview" style="width:1200px;height:500px;padding:20px;"></div>
+    <script>
+        const apikey = 'AEP4wtbDSsOlk6YJhoVEAz';
+        const client = filestack.init(apikey);
+        client.preview('CUk6mdlZRhemTXdYL4zY', {
+            id: 'preview'
+        });
+        document.getElementById('download').addEventListener("click", myFunction);
+      
+        var a = document.createElement('a')
+        document.body.appendChild(a);
+
+        function myFunction() {
+            window.open(
+                'https://cdn.filestackcontent.com/CUk6mdlZRhemTXdYL4zY?dl=true',
+                '_blank' 
+            )
+            a.setAttribute("href", "https://cdn.filestackcontent.com/CUk6mdlZRhemTXdYL4zY");
+            a.setAttribute("target", "_blank");
+
+
+        }
+    </script>
+
+</body>
+
+</html>

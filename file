@@ -1,0 +1,7 @@
+ client = filestack.init('ADK6L5I8eR4q34yTTJ2Lez');
+        client.pick({  
+        fromSources: [ 'local_file_system','dropbox','googledrive'],
+        }).then(function(result) {  
+        console.log(JSON.stringify(result.filesUploaded)) 
+        }) 
+        

@@ -1,0 +1,95 @@
+<!DOCTYPE>
+<html>
+
+<head>
+    <title>filestack exercises</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link type="text/css" rel="stylesheet" href="assets/style.css">
+    <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+        <script src="https://api.filepicker.io/v2/filepicker.js"></script>
+
+
+        <script type="text/javascript">
+        //filepicker.setKey("AuqOa26kQMWP7tBG91ZXAz");
+         const fsClient = filepicker.setKey("AuqOa26kQMWP7tBG91ZXAz"); 
+          const pickOptions = { transformations:
+                { crop:
+                    { force:true, aspectRatio:1.333}, 
+                rotate:true}, 
+                accept: 'image/*',
+           imageMax:[800,600],
+            "uploadInBackground": false,}//Disabled because, bg upload causes 2 uploads towards filestack limits }; fsClient.cropFiles(newArr,pickOptions)
+        
+         fsClient.cropFiles(newArr,pickOptions)
+         
+         
+    const openBtn = document.getElementById('open');
+    const closeBtn = document.getElementById('close');
+    openBtn.addEventListener('click', () => picker.open());
+    closeBtn.addEventListener('click', () => picker.close());
+         </script>
+</head>
+
+<body>
+<div class="banner">
+    <h1 class="mainTitle">File uplouder</h1>
+    <div>
+    <div class="buttonStyle">
+    <button id="open" class="btn-default">Open Picker</button>
+    <button id="close"class = "btn-default">Close Picker</button>
+    </div>
+    <div id="picker" style="width:600px;height:500px;padding:20px;"></div>
+    <!--<div id="content"></div>
+    <input type="file"/>-->
+    <!--<input id="fileSelect" type="file">-->
+    <ul id="filelist">
+    </ul>
+    <div id="preview"></div>
+
+
+
+ 
+<!-- //   filepicker.storeUrl(
+//     "https://2744bd48c5dc78574678-4ec0eee804f2db1d13c7f7585ae47edc.ssl.cf2.rackcdn.com/photos/original/k4lOciL3Tqee2AY50D50_Screen%20Shot%2020180514%20at%2011.48.41%20AM.png",
+//     // {
+//     //   location: 's3',
+//     //   container: 'gabi-dev-portal',
+//     //   path: '/',
+//     //   storeRegion: 'eu-central-1',
+//     //   access: 'public'
+//     // },
+//     {
+//       location: 'rackspace',
+//       container: 'bartek-testing',
+//       path: '/',
+//       storeRegion: 'ORD',
+//       access: 'public'
+//     },
+//     function(Blob){
+//       console.log(JSON.stringify(Blob));
+//     }
+//   );
+
+//   filepicker.processImage(
+//     "https://2744bd48c5dc78574678-4ec0eee804f2db1d13c7f7585ae47edc.ssl.cf2.rackcdn.com/photos/original/k4lOciL3Tqee2AY50D50_Screen%20Shot%2020180514%20at%2011.48.41%20AM.png", 
+//     {
+//       conversions: ['crop'],
+//       cropRatio: 4/3
+//     }, 
+//     function(Blob){
+//       console.log(JSON.stringify(Blob));
+//     }, 
+//     function(FPError){
+//       console.log(FPError.toString());
+//     }
+//   ); -->
+
+
+</body>
+
+</html>

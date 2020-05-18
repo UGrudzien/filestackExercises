@@ -1,0 +1,53 @@
+<!DOCTYPE>
+<html>
+
+<head>
+    <title>filestack exercises</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link type="text/css" rel="stylesheet" href="assets/style.css">
+    <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+</head>
+
+<body>
+<div class="banner">
+    <h1 class="mainTitle">File uplouder</h1>
+    <div>
+    <div class="buttonStyle">
+    <button id="open" class="btn-default">Open Picker</button>
+    <button id="close"class = "btn-default">Close Picker</button>
+    </div>
+    <div id="picker" style="width:600px;height:500px;padding:20px;"></div>
+    <!--<div id="content"></div>
+    <input type="file"/>-->
+    <!--<input id="fileSelect" type="file">-->
+    <ul id="filelist">
+    </ul>
+    <div id="preview"></div>
+
+<script src="https://api.filepicker.io/v2/filepicker.js"></script>
+
+<script type="text/javascript">
+  filepicker.setKey("AEP4wtbDSsOlk6YJhoVEAz");
+  filepicker.pick({
+    mimetype: 'image/*',
+    container: 'window',
+    services: ['COMPUTER', 'FACEBOOK', 'INSTAGRAM', 'GOOGLE_DRIVE', 'DROPBOX'],
+    policy: 'YOUR_POLICY_IF_YOU_USE',
+    signature: 'YOUR_SIGNATURE_IF_YOU_USE'
+    },
+    function(Blob){
+    console.log(JSON.stringify(Blob));
+    },
+    function(FPError){
+    console.log(FPError.toString());
+});
+</script>
+</body>
+
+</html>

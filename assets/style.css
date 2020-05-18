@@ -1,6 +1,17 @@
 .banner{
 }
-
+/* .toolbarButton:first-child{
+    display:none !important
+} */
+/* .fst-sidebar__option{
+    display: none;
+}
+.fst-icon--circle-blue{
+    display: none,
+}
+ .fst-icon--circle-black{
+    display: none
+} */
 .mainTitle{
     text-align: center;
     margin-top:3em;
@@ -9,6 +20,9 @@
     border-bottom-width: 1px;
 font-family: 'Indie Flower', cursive;  
 
+}
+.fsp-icon--close-modal{
+    background-color: red;
 }
 .buttonStyle{
     display: flex
@@ -59,4 +73,10 @@ a div img{
 }
 #picker{
     margin: auto;
+}
+.fst-icon--circle-blue{
+    display: none,
+}
+.fst-icon--circle-black{
+    display: none
 }
