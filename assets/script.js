@@ -1,21 +1,11 @@
 window.addEventListener('DOMContentLoaded', function () {
-  const apikey = 'AEP4wtbDSsOlk6YJhoVEAz';
+  const apikey = 'AuqOa26kQMWP7tBG91ZXAz';
   const client = filestack.init(apikey);
   const options = {
       displayMode: 'inline',
       container: '#inline',
       maxFiles: 20,
-      fromSources:['video','webcam','facebook','local_file_system','imagesearch',	
-      'instagram',
-      'googledrive',
-      'dropbox'	,
-      'audio'	,
-      'box',
-      'github',	
-      'gmail',	
-      'picasa',
-      'onedrive',	
-      'onedriveforbusiness'],
+      fromSources:['video'],
       uploadInBackground: false,
       onUploadDone: (res) => console.log(res),
   };
