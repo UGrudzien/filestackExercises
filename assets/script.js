@@ -1,6 +1,6 @@
 function init() {
   var API_KEY = "A2Xx0v3NRZiCOIQk275hAz";
-  var filestackClient = filestack.init(API_KEY);
+  var filestackClient = filestack.init("A2Xx0v3NRZiCOIQk275hAz");
   var button = document.getElementById("launcher");
   var originalURL = "https://cdn.filestackcontent.com/PFqwRdbRuqrYyAH5pOaI";
 
