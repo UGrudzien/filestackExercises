@@ -1,11 +1,11 @@
 window.addEventListener('DOMContentLoaded', function () {
-  const apikey = 'AuqOa26kQMWP7tBG91ZXAz';
+  const apikey = 'A2Xx0v3NRZiCOIQk275hAz';
   const client = filestack.init(apikey);
   const options = {
       displayMode: 'inline',
       container: '#inline',
       maxFiles: 20,
-      fromSources:['video'],
+     
       uploadInBackground: false,
       onUploadDone: (res) => console.log(res),
   };
