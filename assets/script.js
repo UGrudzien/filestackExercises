@@ -1,26 +1,22 @@
-window.addEventListener('DOMContentLoaded', function () {
-  const apikey = 'A2Xx0v3NRZiCOIQk275hAz';
-  const client = filestack.init(apikey);
+function init() {
+  var API_KEY = "A2Xx0v3NRZiCOIQk275hAz";
+  var filestackClient = filestack.init(API_KEY);
+  var button = document.getElementById("launcher");
   var originalURL = "https://cdn.filestackcontent.com/PFqwRdbRuqrYyAH5pOaI";
 
-  const options = {
-      displayMode: 'inline',
-      container: '#inline',
-      maxFiles: 20,
-     
-      uploadInBackground: false,
+  button.onclick = function (event) {
+    filestackClient
+      .picker({
       onUploadDone: function (result) {
         console.log('done', result);
       },
       onFileUploadFailed: function (err) {
         console.log('failed', err);
       },
-      // onUploadDone: (res) => console.log(res),
+    }).crop(originalURL);
   };
-  const picker = client.picker(options);
-  picker.crop(originalURL)
-  const openBtn = document.getElementById('open');
-  const closeBtn = document.getElementById('close');
-  openBtn.addEventListener('click', () => picker.open());
-  closeBtn.addEventListener('click', () => picker.close());
-});
+}
+
+window.onload = function () {
+  init();
+};
